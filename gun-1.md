@@ -1,33 +1,36 @@
 Liste Oluşturmak
 
+```python
 >>> liste = []
 
 In [1]: teksayilar=[1,3,5]
-
 In [2]: teksayilar[1]
 Out[2]: 3
+```
+
+Pyhton'da array ayrı bir kütüphanedir. Listede farklı veri tiplerini bir arada tutabiliyoruz. Bu diğer dillerdeki bağlı listelerle aynı işlevi görür.
 
 
+* ipyhton kuruldu.
+* pycharm community edition kuruldu.
+* github.com/lyk2014-python/bootstrap Usage altındaki kodlar çalıştırıldı.
 
-Pyhton'da array ayrı bir kütüphanedir. Listede farklı tipte veri tiplerini bir arada tutabiliyoruz. Bu diğer dillerdeki bağlı listelerle aynı işlevi görür.
+--
 
-ipyhton kuruldu.
-pycharm community edition kuruldu.
-github.com/lyk2014-python/bootstrap Usage altındaki kodlar çalıştırıldı.
+Listenin öğe sayısını,  len() fonksiyonu yardımıyla elde edebiliriz:
 
-----
-listenin öğe sayısını,  len() fonksiyonu yardımıyla elde edebiliriz:
-
+```python
 In [1]: isimler=["doga","halit","emre"]
-
 In [2]: print len(isimler)
 3
+```
 
-----
-Listeye Öğe Eklemek
+--
+**Listeye Öğe Eklemek**
 
 Python’da herhangi bir listeye öğe eklemek için append() metodundan yararlanabiliriz.
 
+```
 In [3]: isimler.append("fatih")
 
 In [4]: print isimler
@@ -35,9 +38,12 @@ In [4]: print isimler
 
 In [5]: print len (isimler)
 4
+```
 
-----
-in Deyimi
+--
+**in deyimi**
+
+```
 In [6]: for i in range(10):
    ....:     print i
    ....:     
@@ -51,9 +57,11 @@ In [6]: for i in range(10):
 7
 8
 9
+```
 
-in deyimini kullanarak bir şeyin başka bir şeyin içinde olup olmadığını sorgulayabiliriz:
+in deyimini kullanarak bir verinin başka bir veri yapısı (örneğin liste) içinde olup olmadığını sorgulayabiliriz.
 
+```
 In [7]: isimler
 Out[7]: ['doga', 'halit', 'emre', 'fatih']
 
@@ -70,10 +78,11 @@ doga
 halit
 emre
 fatih
-
+```
 ---
-Liste Öğelerine Erişmek
+**Liste Öğelerine Erişmek**
 
+```
 In [1]: sayilar=[11,22,30,15,14,12]
 
 In [2]: sayilar[2]
@@ -91,44 +100,67 @@ Out[5]: [11, 22, 30, 15, 14, 12]
 In [6]: sayilar[-1]
 Out[6]: 12
 
-In [7]: sayilar[-2] #sondan 2.elemana eriştik -2 diyerek
-Out[7]: 14
+In [7]: sayilar[-2] 
+# sondan 2.elemana eriştik -2 diyerek
 
+Out[7]: 14
 
 In [8]: a="Python"
 
 In [9]: print a[2:]
 thon
+```
 
-----
-Fonksiyon Tanımlamak
-Python'da fonksiyon tanımlarken def anahtar kelimesi kullanılır.
+--
+**Fonksiyon Tanımlamak**
 
+Python'da fonksiyon tanımlarken *def* anahtar kelimesi kullanılır.
+
+```
 def fonk_adi():
+```
 
-Python'da fonksiyonlar parametre olarak  fonksiyon alabilirler.
+Python'da fonksiyonlar parametre olarak yine **fonksiyon** alabilirler.
 
---- Hmap
+--
+**Hashmap (Dict)**
 
+```
 In [1]: sozluk={"elma":"apple","portakal":"orange"}
 
 In [2]: sozluk["elma"]
 Out[2]: 'apple'
+```
 
-ekleme..
+**ekleme**
+
+```
 In [3]: sozluk["bilgisayar"]="computer"
 
 In [4]: sozluk
-Out[4]: {'bilgisayar': 'computer', 'elma': 'apple', 'portakal': 'orange'}
+Out[4]: {'
+	bilgisayar': 'computer',
+	'elma': 'apple',
+	'portakal': 'orange'
+}
+```
 
-silme..
+**silme**
 
+```
 In [5]: del sozluk["elma"]
 
 In [6]: sozluk
-Out[6]: {'bilgisayar': 'computer', 'portakal': 'orange'}
+Out[6]: {
+	'bilgisayar': 'computer',
+	'portakal': 'orange'
+}
+```
 
----Demo --
+--
+**Demo - Akıllı Sözlük**
+
+```
 sozluk = {"elma": "apple", "portakal": "orange"}
 
 while True:
@@ -139,46 +171,63 @@ while True:
     else:
         istek2 = raw_input("yokmus bir kelime ekleyiniz")
         sozluk[istek] = istek2
-----
+```
 
-Python kitapları indirebilinecek github linki = https://github.com/lyk2014-python/pykitap
+* <a href="https://github.com/lyk2014-python/pykitap">Python kitapları</a>
 
----Class'lar---
+
+--
+**Class'lar**
+
+```
 class Window (object):
-  pass    # en baş obje,window class'ı yaratıyoruz ve onun boş olduğunu pass ile belirtiyoruz
+  pass
+  # en baş obje,window class'ı yaratıyoruz ve
+  # onun boş olduğunu pass ile belirtiyoruz
 
 w1=Window()
-w2=Window()  #Window class'ından obje yaratıp w1 ve w2'ye atamış olduk.
+w2=Window()
 
-Python dilinde özel anlamı olan metodlar vardır.BUnlardan biri de __init__ metodudur.BU metod java dilindeki constructur ile aynı göreve sahiptir.
-BU metod 2 parametre alır ,ilk aldığı parametre yaratılan nesnedir.
+# Window class'ından obje yaratıp 
+# w1 ve w2'ye atamış olduk.
+```
 
-Örn= def __init__(self,title):
-   self.title=title             # Buradaki self,javadaki this'e karşılık gelmektedir.
+Python dilinde özel anlamı olan metodlar vardır. Bunlardan biri de **__init__** metodudur. Bu metod java dilindeki constructer ile aynı göreve sahiptir.
+<del>Bu metod 2 parametre alır</del>, ilk aldığı parametre yaratılan nesnedir.
 
-w1=window("python kursu")
-w2=window("chrome")
+```
+def __init__(self,title):
+   self.title=title
+   # Buradaki self,javadaki this'e karşılık
+   # gelmektedir.
+
+w1 = window("python kursu")
+w2 = window("chrome")
   print w1.title
   print w2.title
+```
+--maximize methodu
 
---maximize örneği
-
+```
 def maximize(self):
    self.height=1920 #max height
-
+```
+```
 >>w1=Window("dogan cecen")
 >>w1.title
   'dogan cecen'
->>w1.maximaze()
+>>w1.maximize()
 >>w1.height
   1920
+```
+**inheritance**
 
---örnek
+```
  class Kisi(object):
    def __init__(self,isim):
    self.isim=isim
  class Ogrenci(kisi):
    pass
-   
+```
 
-(devamı eklenecek)
+**(devamı eklenecek)**
