@@ -213,11 +213,11 @@ def maximize(self):
    self.height=1920 #max height
 ```
 ```
->>w1=Window("dogan cecen")
->>w1.title
+>> w1=Window("dogan cecen")
+>> w1.title
   'dogan cecen'
->>w1.maximize()
->>w1.height
+>> w1.maximize()
+>> w1.height
   1920
 ```
 **inheritance**
