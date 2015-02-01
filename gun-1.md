@@ -13,7 +13,7 @@ Pyhton'da array ayrı bir kütüphanedir. Listede farklı veri tiplerini bir ara
 
 * ipyhton kuruldu.
 * pycharm community edition kuruldu.
-* github.com/lyk2014-python/bootstrap Usage altındaki kodlar çalıştırıldı.
+* <a href="github.com/lyk2014-python/bootstrap">github.com/lyk2014-python/bootstrap - Usage<a> altındaki kodlar çalıştırıldı.
 
 --
 
