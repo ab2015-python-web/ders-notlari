@@ -203,8 +203,8 @@ def __init__(self,title):
 
 w1 = window("python kursu")
 w2 = window("chrome")
-  print w1.title
-  print w2.title
+print w1.title
+print w2.title
 ```
 **maximize methodu**
 
