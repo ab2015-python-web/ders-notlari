@@ -144,4 +144,41 @@ while True:
 Python kitapları indirebilinecek github linki = https://github.com/lyk2014-python/pykitap
 
 ---Class'lar---
+class Window (object):
+  pass    # en baş obje,window class'ı yaratıyoruz ve onun boş olduğunu pass ile belirtiyoruz
+
+w1=Window()
+w2=Window()  #Window class'ından obje yaratıp w1 ve w2'ye atamış olduk.
+
+Python dilinde özel anlamı olan metodlar vardır.BUnlardan biri de __init__ metodudur.BU metod java dilindeki constructur ile aynı göreve sahiptir.
+BU metod 2 parametre alır ,ilk aldığı parametre yaratılan nesnedir.
+
+Örn= def __init__(self,title):
+   self.title=title             # Buradaki self,javadaki this'e karşılık gelmektedir.
+
+w1=window("python kursu")
+w2=window("chrome")
+  print w1.title
+  print w2.title
+
+--maximize örneği
+
+def maximize(self):
+   self.height=1920 #max height
+
+>>w1=Window("dogan cecen")
+>>w1.title
+  'dogan cecen'
+>>w1.maximaze()
+>>w1.height
+  1920
+
+--örnek
+ class Kisi(object):
+   def __init__(self,isim):
+   self.isim=isim
+ class Ogrenci(kisi):
+   pass
+   
+
 (devamı eklenecek)
