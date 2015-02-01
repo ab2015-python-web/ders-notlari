@@ -4,4 +4,4 @@ Akademik bilişim 2015'teki derslerde ögrenciler tarafından tutulan notlar. Ka
 
 --
 **Günler**
-* <a href="https://github.com/ab2015-python-web/ders-notlari/blob/master/gun-1.md">1.gün</a>
+* <a href="https://github.com/ab2015-python-web/ders-notlari/blob/master/gun-1.md">1.gün</a> (teşekkürler @busetekin)
