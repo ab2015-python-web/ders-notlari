@@ -1,4 +1,4 @@
-Liste Oluşturmak
+**Liste Oluşturmak**
 
 ```python
 >>> liste = []
