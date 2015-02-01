@@ -206,7 +206,7 @@ w2 = window("chrome")
   print w1.title
   print w2.title
 ```
---maximize methodu
+**maximize methodu**
 
 ```
 def maximize(self):
