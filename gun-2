@@ -1,0 +1,253 @@
+
+*set'in listeden farkı içinde tekrarlı eleman olmaması.
+
+*set'in notasyonu dictionary gibi
+
+--*kesişim alma*--
+
+set_1.intersection(set_2)
+ intersectionun kısa yolu set_2 & set_1 şeklinde kullanılmaktadır.
+lazım oldugu yerler örneğin = elinizde büyük bir liste var,içinde tekrarlı eleman olup olmadığını bulmamıza yarayabilir.Kullanışlı bir veri yapasıdır.
+
+*Aşağıdaki 4 yapı pythonda çok kullanılır
+-Dictionary
+-Liste
+-Set
+-Tuple 
+
+*Tuple'lar
+
+immutable denilen değiştirilemeyen veri tiplerinden.C deki cost gibi.Kodumuzun içindeki çeşitli ayarları tutmak için kullanılabilir.
+
+*sürekli fonksiyon tanımlamak yerine isimsiz fonksiyonlar kavramı var :
+lambda fonksiyon tanımlaması yapıyor.Aşagıdaki örnekte tanımlamayı kare_al'e atıyor.kare_al artık bi fonksiyon oluyor.lambda sayesinde sürekli def'in kullanımına gerek kalmıyor .
+kare_al= lambda x:x*x
+kare_al(10)
+çıktı=100
+
+
+*map(function,iterable)  # iterable kısmı set veya dictionary olabilir.
+map(kare_al,[1,2,3,4])
+
+burda artık bu listedeki elemanların karelerini alıp listeleyecek.
+
+map(lambda x:x*x ,range(6) )
+
+---*Filter*---
+
+Burda verdiğimiz fonksiyondan geriye true degeri dönüyorsa sadece true döneneleri alıyor.
+
+filter(lambda x:x%2,range(100)) # 0 dan 99 a kadar olan sayılardan 2 ye tam bölünenleri listeleyecek.
+
+---*Dosyadan okuma*---
+
+open metedou var.Dosya adını string olarak veriyoruz,hangi modda okumak istediğimizi belirtiyoruz ,default'u read'dir.Bunu da bir değişkene atıyoruz.
+
+f=open("---","r")
+
+f.read() #tamamen geriye döndürüyor
+
+f.readlines() # satır satır bölerek liste halinde geriye döndürüyor
+
+f.write()
+
+f.split(",") # split bölme metodur.Stringi parantez içinde belirttiğimiz işaretlere göre böler.Mesela virgüle göre.
+
+-----
+
+
+
+Örnek = Bir txt'yi okuyup içinde tekrarlı geçen kelimelerin adedini bulma.
+
+
+>>> f=open("dosyaokumaornegi","r") # dosyanın adından sonra .txt denilmeyecek
+
+>>> text = f.read()
+
+>> text
+  'bugun hava cok guzel bugun  cok yogun bugun cok sicak\n'
+
+## split() dediğimizde default olarak tabları,newline tüm whitespaceleri ignore ediyor.
+
+
+**Flask'ın Classları
+@app.route('/')  anasayfa demek
+
+@app.route('/hello') # anasayfa dışındaki sayfaları belirtiyor.
+
+BU sitedeki örnek kodları sanal ortamımızda bir belgeye kaydedip çalıştırdık.
+link= http://flask.pocoo.org/docs/0.10/quickstart/#quickstart
+
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return 'Index Page'
+
+@app.route('/hello')
+def hello():
+    return 'Hello World'
+
+if __name__ == "__main__":
+app.run()
+
+** @app.route('/user/<username>') bunun içine yazdığımız şey kullanıcıdan gelen değer olacak.
+
+@app.route('/user/<username>')
+def show_user_profile(username):
+    # show the user profile for that user
+    return 'User %s' % username
+
+@app.route('/post/<int:post_id>')
+def show_post(post_id):
+    # show the post with the given id, the id is an integer
+    return 'Post %d' % post_id
+
+İstediğim şeyi kısıtlayabiliri.Post'ta tip belirleyebilirim.int: diyerek tip belirledik. /post/1 dediğinde doğru çalışır /post/sepet derse kullanıcı 404 hatası gelir.
+
+--*HTTP Methods*--
+
+SErverda bir şey ekleyip silmede Post'u kullanırız.Bir istek yapıyorsak Get methodunu kullanırız.
+Request ile bilgileri aldığımız yer "if request.method == 'POST': " kısmıdır.
+
+Siteden alınan örnek kod=
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        do_the_login()
+    else:
+        show_the_login_form()
+
+form bilgileride requestten gelir.
+Örneğin delete ile geliyorsa ve yukarıdaki url ile gelirse o postu silebilirz.
+
+--*Static Files*--
+
+Dinamik sayfa urldeki parametreye göre düzenlenen sayfadır.
+Web sayfalarında bazı değişmeyen yerler vardır,o kısımlar static dosyadır.
+javascript ve css static dosyadır mesela.
+Flask bunları /static içinde arar.
+Staticler hiç değişmeyecek olarak kabul edilir.
+
+--*Rendering Templates*--
+
+
+from flask import render_template
+@app.route('/hello/')
+@app.route('/hello/<name>')
+def hello(name=None):
+    return render_template('hello.html', name=name)
+
+
+templateleri oluşturğumuz dizine templates klasörü oluşturuyoruz.
+"{{ " bu işareti templateimizin içinde flask kodumuzun içine göndereceğimiz değişkenler için yazıyoruz.
+
+örnek :
+
+from flask import Flask
+from flask import render_template
+app = Flask(__name__)
+
+
+
+
+
+@app.route('/hello/')
+@app.route('/hello/<name>')
+def hello(name=None):
+    return render_template('hello.html', name=name)
+
+if __name__ == "__main__":
+    app.debug=True
+    app.run(port=8001)
+
+Burada " app.debug=True " ifadesi koymamızın sebebi hata çıkarsa neden kaynaklı olduğunu görmek için.
+http://127.0.0.1:5000/ Bu portundan örneğimizi çalıştırabiliriz.Eğer arkplanda 5000 portu ölmmeişse 8000,8001...9000 portlarını deniyebilirsiniz.
+
+
+
+---*MongoDb*--
+Pythonda yazdığımız dictionaryleri MOngodb'ye ekleyebiliyoruz.
+API geliştiriken işimizi kolaylaştıran bir veritabanı.
+Pythondan mongodb ye bağlanmak için pymongo indirmemiz gerek.
+
+from pymongo import Connection # bu komutla mongodbye bağlanıyoruz
+db=Connection()["akademikbilisim"] # akademikbilisim isimli bir veritabanı oluşturduk
+db.people.find()  #people ilişkiselveritabınında tabloya denk geliyor.
+db.people.insert({"name":"fatih"})  #id'yi kendi veriyor
+
+
+
+--*Forma girilen bilgileri veritabanına eklme örneği*---
+
+from flask import Flask
+from flask import request,redirect, render_template
+from pymongo import Connection
+
+app = Flask(__name__)
+
+
+@app.route('/',methods=["GET","POST"])
+def index():
+	db=Connection()["akademikbilisim"]
+	table = db["mesaj"]
+
+	liste=list(table.find())
+	
+	if request.method == 'POST':
+		name=request.form.get("name")
+		message=request.form.get("message")
+		table.insert({"name":name, "message":message})
+	
+		return "Kayit tamam <a href='/'>geri</a>"
+
+
+	else:
+		return render_template("newForm.html", kayitlar=liste)
+
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+burdaki newform.html'in içeriği
+<html >
+<header> New  Form </header>
+<body>
+
+ <form action="" method="POST">
+ name:<br>
+<input type="text" name="name">
+<br>
+message:<br>
+
+<textarea  name="message" maxlength="1000" cols="25" rows="6"></textarea>
+
+ <button type="submit">Gönder </button>
+
+</form> 
+
+<hr>
+<ul>
+	{% for mesaj in kayitlar %}
+		
+		<li>
+			name : {{ mesaj.name }} <br>
+			mesajı : {{ mesaj.message }}
+		</li>
+		<hr>
+
+	{% endfor %}
+</ul>
+
+</body>
+
+</html>
+
+
+-------
+
+
+
+
