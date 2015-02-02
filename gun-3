@@ -1,0 +1,68 @@
+--*01.02.2015 dersinin tekrarı*--
+
+öneri => try.mongodb.org 'daki tutorial  yapılabilir.
+Database üzerinde coğrafi sorgular yapmamızı sağlayan desteği var MongoDb'nin --> Geospatial Indexing
+link => http://api.mongodb.org/python/1.7/examples/geo.html
+
+
+--*The Wall Api *--
+
+Post KIsmı
+
+ thewall.py dosyası oluşturduk sanalalanımızın içinde.(Virtualnv yaratmıştık o kısımda çalışıyoruz.Bir yerde çalışınca herşey için aynı pakaetleri kullanmıyoruz ,projelere göre farklı paketler kullanıyoruz,projeler güncellendiklerinde projelerin etkilenmeden çalışmasını sağlar virtualnv'lar.Aynı makine üzerinde farklı ortamlar sunuyor bize.)
+
+--*thewall.py*--
+from flask import Flask,jsonify
+
+app = Flask(__name__)
+from pymongo import Connection
+db=Connection()['thewall'] # bir database yaratıyoruz thewall isminde
+
+@app.route("/api/messages")
+def hello():
+
+	messages=db.messages.find() #databasede eklediğimiz mesajları urdan seçiyoruz
+	result=[]  #bunları result isimli bir listeye atacağız.
+	for message in messages:
+		result.append({  # resulta ekliyoruz çektiğimiz erileri
+			"name":message.get("name"),
+			"message":message.get("message")
+		})
+
+
+
+	return jsonify(messages=result)  #gelen sonuçlarımızın jsaon formatında çıkmaları içinjsonify kullandık.BUnu kullanbilmemiz içinde 
+					 #from flask import jsonify ekledik.
+
+if __name__ == "__main__":
+    app.run(debug=True)
+---terminal tarafı--
+
+1-virtualnv alanımıza girdik,aktifleştirdik.
+2-python'ı çalıştırdık.
+3-from pymongo import Connection
+4-db=Connection()['databaseimizin adı']
+5-db.messages.insert({ "name":"xxx","message":"yyy"})  #verilerimizi ekledik
+6-python thewall.py # çalıştırdık dosyamızı
+7-http://127.0.0.1:5000/ portundan sonuçlarımızı gözlemledik. # portta sorun çıkarsa thewall.py dosyamızdaki    app.run(debug=True) kısmı   									app.run(port='8000',debug=True) olrak değiştirebiliriz.
+
+---
+test etme
+pip install httpie
+http google.com
+
+---
+Pythonda datetime modülü var.
+datetime.datetime.now()
+datetime.datetime.utcnow() # saat önemliyse bunu kullanıyoruz
+
+date_sent -> now
+find.sort([('date_sent',-1)])
+Asc=küçükten büyüğe doğru sıralıyor.Artan istiyorsak +1
+Desc= büyükten küçüğe doğru sıralıyor.-1 yazıyoruz.
+
+
+
+
+
+
