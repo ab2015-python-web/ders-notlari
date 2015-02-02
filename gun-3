@@ -62,7 +62,61 @@ Asc=küçükten büyüğe doğru sıralıyor.Artan istiyorsak +1
 Desc= büyükten küçüğe doğru sıralıyor.-1 yazıyoruz.
 
 
+--thewall.py son hali--
 
+from flask import Flask, jsonify, request
+from pymongo import Connection
+from datetime import datetime
+
+app = Flask(__name__)
+
+db = Connection()['thewall']
+
+@app.route('/api/messages')
+def hello():
+    messages = db.messages.find().sort([('date_sent',-1),])
+
+    result = []
+
+    for message in messages:
+        result.append({"name": message.get("name"), "message":message.get("message"), "date_sent": message.get("date_sent")})
+
+    return jsonify(messages = result)
+
+@app.route('/api/messages',methods = ['POST'])
+def post_message():
+    data = {"name":request.form.get('name'),
+            "message":request.form.get('message'),
+            "date_sent":datetime.now()
+
+    }
+    db.messages.insert(data)
+    del data['_id']
+    return jsonify(data)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+    
+    test etmek için bu arkaplanda çalışırken aşağıdaki satırı çalıştırdık.
+    
+    http post localhost:5000/api/messages name=fatih --form
+    
+    gördüğümüz=
+    
+    HTTP/1.0 200 OK
+Content-Length: 92
+Content-Type: application/json
+Date: Mon, 02 Feb 2015 14:53:16 GMT
+Server: Werkzeug/0.10 Python/2.7.6
+
+{
+    "date_sent": "Mon, 02 Feb 2015 16:53:16 GMT", 
+    "message": null, 
+    "name": "fatih"
+}
+
+    
 
 
 
