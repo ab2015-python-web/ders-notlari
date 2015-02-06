@@ -1,0 +1,47 @@
+Cross-site scripting (XSS)
+
+CSRF
+--Tarayıcı koruması vardır.Ama garantisi yoktur.
+--Referer ,http header'ında geliyor.
+--csrf token
+
+--
+import random
+from flask import render_temlate,session,abort
+
+random.choice = kendisine bir liste verilirse onun içinden random şekilde bir öge dönecek.
+
+--
+
+--*Deployment için ihtiyaçlar:
+
+Web server
+Nginx,Apache..
+Ara katmanda python uygulamalarınızı yönetecek =bunicorn (python uygulamalrınızı ayağa kaldıracak).wsgi
+Supervisor( UYgulamanız çöktüğünde tekrardan ayağa kaldırıyor)
+Veritabanı olarak= Mongodb,Rethinkdb
+İlişkisel=Postgresql,Mysql 
+Sqlalchemy(ORM)
+
+Deploy ettiğimizde dikkat etmemiz gerekenler:
+
+Mongodb'nin 27017 portunu açık bırakılmamalı.İnternette herhangi birisi bizim mongodb veritabanımıza bağlanıp verilerimizle oynayabilir.nmap denilen bir araçla açık portları 3. şahıslar bulabiliyor.(nmap -p- ipadresi) 28017 portu da kapalı olmalıdır.Sunucularda 22 ve 80'i açmamız yeterli.
+
+--*Öneriler*--
+
+Bilgisayar Bilimcisi Gibi Düşünün kitabı (Yazarlar: Jeffrey Elkner, Allen B. Downey ve Chris Meyers)
+Dive Into Python
+Programming Pearls kitabı ( uluslararası firmaların mülakatları için faydalı olabilir)
+Cracking the coding interview 
+nand2tetris.org
+Coursera-Algorithms I,II
+Mythical Man Month  
+The Pragmatic Programmer
+Uzaktan iş bulmak isteyenler için = http://careers.stackoverflow.com/
+Popüler olacak framework = http://reactjs.net/ 
+http://www.tangowithdjango.com/
+
+
+
+
+
